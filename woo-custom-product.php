@@ -9,8 +9,6 @@
  *  Author URL:  https://github.com/hannannexus/
  *  Version: 1.0.0
  *  Text Domain: woo-custom-product
- * 
- * 
 */
 
 
@@ -22,7 +20,7 @@
     class WC_Product_Car extends WC_Product{
 
         public function __construct($product){
-            $this->product_type = "car";           
+            $this->product_type = "Car";           
             parent:: __construct($product);
         }
         
@@ -42,19 +40,34 @@ function add_car_product_type($types){
 }
 add_filter('product_type_selector','add_car_product_type');
 
-
-/** 
- *  Add  new Tab for car product 
+/**
+ *  Add new panel for woocommerce custom product product by Jquery
 */
 
-function car_data_tabs( $tabs ){
+function add_car_product_panel_js(){
+    
+    if ('product' != get_post_type()) :
+        return;
+    endif;
 
-    $tabs['car'] = array(
-        'label' => __(' Product Car','woo-custom-product'),
-        'target' => 'car_product_option',
-        'class' => array('show_if_car_product'),
-        'priority' => 10
-    );    
-    return $tabs;
+    ?>
+   <script type='text/javascript'>
+        jQuery(document).ready(function () {
+
+            //for Price tab
+            jQuery('.product_data_tabs .general_tab').addClass('show_if_car').show();
+            jQuery('#general_product_data .pricing').addClass('show_if_car').show();
+            //for Inventory tab
+            jQuery('.inventory_options').addClass('show_if_car').show();
+            jQuery('#inventory_product_data ._manage_stock_field').addClass('show_if_car').show();
+            jQuery('#inventory_product_data ._sold_individually_field').parent().addClass('show_if_car').show();
+            jQuery('#inventory_product_data ._sold_individually_field').addClass('show_if_car').show();
+        });
+    </script>  
+    <?php
 }
-add_filter('woocommerce_product_data_tabs','car_data_tabs');
+add_action('admin_footer','add_car_product_panel_js');
+
+
+
+
