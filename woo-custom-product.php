@@ -83,46 +83,26 @@ function add_product_custom_type_options( $options ){
 }
 add_filter('product_type_options','add_product_custom_type_options');
 
-/**
- *  Show Add To Cart Button 
-*/
-add_action( 'woocommerce_single_product_summary', 'custom_button_after_product_summary', 30 );
 
-function custom_button_after_product_summary() {
-  global $product;
-  echo "<a href='".$product->add_to_cart_url()."'>add to cart</a>";
-}
 
 
 /**
- *  Add quantity on custom type product  
+ * Template Override 
 */
 
+function woo_custom_single_product_template( $template, $template_name, $template_path ){
 
-add_filter( 'woocommerce_is_sold_individually', 'disable_sold_individually_for_custom_product_type', 10, 2 );
 
-function disable_sold_individually_for_custom_product_type( $bool, $product ) {
-    if ( $product->is_type( 'Car' ) ) {
-        return false;
+    if( "title.php" === basename($template)){
+
+        $template = trailingslashit(plugin_dir_path(__FILE__)).'woocommerce/single-product/title.php';
     }
-    return $bool;
+
+    return $template;
 }
+add_filter('woocommerce_locate_template','woo_custom_single_product_template',100,3);
 
-add_action( 'woocommerce_before_add_to_cart_button', 'add_quantity_input_custom_product', 10 );
 
-function add_quantity_input_custom_product() {
-    global $product;
-
-    if ( $product->is_type( 'Car' ) ) {
-        echo '<div class="quantity">';
-        woocommerce_quantity_input( array(
-            'min_value'   => apply_filters( 'woocommerce_quantity_input_min', 1, $product ),
-            'max_value'   => apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product ),
-            'input_value' => isset( $_POST['quantity'] ) ? wc_stock_amount( $_POST['quantity'] ) : 1
-        ) );
-        echo '</div>';
-    }
-}
 
 
 
