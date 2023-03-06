@@ -17,17 +17,32 @@
 */
 
  function register_car_product_type(){
-    class WC_Product_Car extends WC_Product{
+    /*class WC_Product_Car extends WC_Product{
 
         public function __construct($product){
             $this->product_type = "digital_gift_card";           
             parent:: __construct($product);
         }
         
-    }
+    }*/
+
+    class WC_Product_Digital_Gift_Card extends WC_Product {
+        public function get_type() {
+           return 'digital_gift_card';
+        }
+      }
 }
 add_action('init','register_car_product_type');
 
+
+add_filter( 'woocommerce_product_class', 'bbloomer_woocommerce_product_class', 10, 2 );
+ 
+function bbloomer_woocommerce_product_class( $classname, $product_type ) {
+    if ( $product_type == 'digital_gift_card' ) {
+        $classname = 'WC_Product_Digital_Gift_Card';
+    }
+    return $classname;
+}
 
 /** 
  *  Add csutom Product type to this product dropdown menu
@@ -85,14 +100,19 @@ add_filter('product_type_options','add_product_custom_type_options');
 
 
 
+define('WCP', plugin_dir_path(__FILE__));
 /* load custom single product page temple*/
 function digital_gift_card_product_page_template_load($template){
 
-    define('WCP', plugin_dir_path(__FILE__));
-  
+    global $post;
     $template_slug = basename( rtrim( $template, '.php' ) );
-    if ( ($template_slug === 'single-product' || $template_slug === 'woocommerce') && is_product()  ) {
-        $template = WCP . 'woocommerce/single-product-digital-gift-card.php';
+    if ( ($template_slug === 'single-product' || $template_slug === 'woocommerce') && is_product()) {
+        
+        $product_obj = wc_get_product($post->ID);
+        //echo $product_obj->get_type();
+        if($product_obj->get_type()==='digital_gift_card'){
+            $template = WCP . 'woocommerce/single-product-digital-gift-card.php';
+        }
     }
 
     return $template;
