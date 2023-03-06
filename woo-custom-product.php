@@ -17,15 +17,7 @@
 */
 
  function register_car_product_type(){
-    /*class WC_Product_Car extends WC_Product{
-
-        public function __construct($product){
-            $this->product_type = "digital_gift_card";           
-            parent:: __construct($product);
-        }
-        
-    }*/
-
+ 
     class WC_Product_Digital_Gift_Card extends WC_Product {
         public function get_type() {
            return 'digital_gift_card';
@@ -35,9 +27,9 @@
 add_action('init','register_car_product_type');
 
 
-add_filter( 'woocommerce_product_class', 'bbloomer_woocommerce_product_class', 10, 2 );
+add_filter( 'woocommerce_product_class', 'digital_gift_card_product_class', 10, 2 );
  
-function bbloomer_woocommerce_product_class( $classname, $product_type ) {
+function digital_gift_card_product_class( $classname, $product_type ) {
     if ( $product_type == 'digital_gift_card' ) {
         $classname = 'WC_Product_Digital_Gift_Card';
     }
