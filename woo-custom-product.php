@@ -90,19 +90,32 @@ add_filter('product_type_options','add_product_custom_type_options');
  * Template Override 
 */
 
-function woo_custom_single_product_template( $template, $template_name, $template_path ){
+// function woo_custom_single_product_template( $template, $template_name, $template_path ){
 
 
-    if( "title.php" === basename($template)){
+//     if( "title.php" === basename($template)){
 
-        $template = trailingslashit(plugin_dir_path(__FILE__)).'woocommerce/single-product/title.php';
+//         $template = trailingslashit(plugin_dir_path(__FILE__)).'woocommerce/single-product/title.php';
+//     }
+
+//     return $template;
+// }
+// add_filter('woocommerce_locate_template','woo_custom_single_product_template',100,3);
+
+
+
+
+/* load custom single product page temple*/
+function car_custom_product_page_template_load($template){
+
+    define('WCP', plugin_dir_path(__FILE__));
+  
+    $template_slug = basename( rtrim( $template, '.php' ) );
+    if ( ($template_slug === 'single-product' || $template_slug === 'woocommerce') && is_product()  ) {
+        $template = WCP . 'woocommerce/single-product-car.php';
     }
 
     return $template;
+
 }
-add_filter('woocommerce_locate_template','woo_custom_single_product_template',100,3);
-
-
-
-
-
+add_filter('template_include','car_custom_product_page_template_load',100);
