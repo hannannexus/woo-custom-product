@@ -41,7 +41,7 @@
 
                 <form action="" method="post">
                     <label for="quantity">Quantity:</label>
-                    <input type="number" name="quantity" id="quantity" value="1" min="1" max="10" step="1">
+                    <input type="number" name="quantity" id="quantity" value="1" min="1" max="" step="1">
                     
                 </form>
                     <?php 
