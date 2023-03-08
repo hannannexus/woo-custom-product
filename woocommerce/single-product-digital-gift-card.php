@@ -7,8 +7,8 @@
     <title>Digital Gift card </title>
 </head>
 <body>
-    <div class="container">
-        <div class="main">
+   <div id="main">
+        <div id="p_one">
 
                <?php 
                   global $post;
@@ -30,33 +30,36 @@
                     <div class="stock">
                         <p><span>Product Stock: <?php echo $digital_gift_product->stock_status; ?></span></p>
                     </div>
-                    <div class="quantity">
 
+            </div>
+        </div> <!-- end #p_one-->
+           
+    </div><!-- #end main-->
+    <!-- product bottom section -->
+    <div class="product_bottom_section">
+        <div class="quantity">
+
+                <form action="" method="post">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" name="quantity" id="quantity" value="1" min="1" max="10" step="1">
+                    
+                </form>
+                    <?php 
+                        
+                        global $woocommerce;
+
+                        $p_id = $post->ID; // Replace with the ID of the product you want to add to the cart.
+                        $quantity = isset( $_POST['quantity'] ) ? intval( $_POST['quantity'] ) : 1;
+
+                        // $woocommerce->cart->add_to_cart( $$p_id , $quantity );
+
+                    ?>
                     
 
-                    <form action="" method="post">
-                        <label for="quantity">Quantity:</label>
-                        <input type="number" name="quantity" id="quantity" value="1" min="1" max="10" step="1">
-                        
-                    </form>
-                        <?php 
-                            
-                            global $woocommerce;
-
-                            $p_id = $post->ID; // Replace with the ID of the product you want to add to the cart.
-                            $quantity = isset( $_POST['quantity'] ) ? intval( $_POST['quantity'] ) : 1;
-
-                            // $woocommerce->cart->add_to_cart( $$p_id , $quantity );
-
-                        ?>
-                         
-
-                     </div>
-                    <div class="quantity_cart_button">
+                </div>
+                <div class="quantity_cart_button">
                     <a href="?add-to-cart=<?php echo $post->ID; ?>" rel="nofollow" data-product-id="<?php echo $post->ID; ?>" class="btn btn-primary">Add to cart</a>   
-                    </div>
-            </div>
-        </div>
+                </div>
     </div>
 </body>
 </html>
