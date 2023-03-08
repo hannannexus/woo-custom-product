@@ -36,7 +36,7 @@
            
     </div><!-- #end main-->
     <!-- product bottom section -->
-    <div class="product_bottom_section">
+    <div id="p_one_bottom" class="product_bottom_section">
         <div class="quantity">
 
                 <form action="" method="post">
