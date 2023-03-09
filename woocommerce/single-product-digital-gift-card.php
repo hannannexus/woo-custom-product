@@ -35,8 +35,64 @@
                         </div>
 
                 </div>
+
+                   <!-- form section start here-->
+                    <div class="form_main">
+                        <div class="reciver_part">
+                            <div class="reciver_title">
+                                <h4>Recipient Info: </h4>
+                            </div>
+                            <div class="receiver_info">
+                                <label for="Name">Receiver Name</label>
+                                <input type="text" name="receiver_name[]" value="" class="receiver_name">
+                                <label for="Email">Receiver Email:</label>
+                                <input type="email" name="receiver_email[]" value="" class="receiver_email">
+
+                                
+                             </div>
+                        </div>
+
+                        <!-- sender info -->
+                        <div class="sender_part">
+                            <div class="sender_title">
+                                <h4>Sender Info: </h4>
+                            </div>
+                            <div id="Sender_info">
+                                <label for="Sender Name">Sender Name</label>
+                                <input type="text" name="sender_name[]" value="" class="sender_name">
+                                <label for="Sender Email">Sender Email:</label>
+                                <input type="email" name="sender_email[]" value="" class="sender_email">
+
+                            </div>
+
+                            <div class="messagae_part">
+                                <textarea name="sms[]" id="sender_sms" cols="5" rows="5"></textarea>
+                            </div>
+                            <div class="sending_option">
+                                <div class="radio_one">
+                                    <label for="send for email">
+                                        <input type="radio" name="email_send[]" id="email_radio"> Send an email to the recipient
+                                    </label>
+                                </div>
+                               <div class="radio_two">
+                                    <label for="send for sms">
+                                        <input type="radio" name="sms_send[]" id="sms_radio"> Send an SMS to the recipient
+                                    </label>
+                               </div>
+                                <div class="radio_three">
+                                    <label for="send for sms and email">
+                                        <input type="radio" name="sms_email_send[]" id="sms_email_radio"> Send sms & email to recipient
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                  <!-- form section end here-->
             </div> <!-- end #p_one-->
         </div>
+
+       
         
     </div><!-- #end main-->
     <!-- product bottom section -->
