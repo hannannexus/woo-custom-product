@@ -12,6 +12,17 @@
 */
 
 
+/* enqueue js file here */
+function woo_custom_product_assets(){
+    // jQuery UI css file 
+    wp_enqueue_style('jquery-ui-css','//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css',null,'1.0.0','all');
+    wp_enqueue_script('jquery-ui-js','//code.jquery.com/ui/1.12.1/jquery-ui.js',array('jquery'),'1.0.0', true);
+    wp_enqueue_script('custom-product-js',plugin_dir_url( __FILE__ ) . '/assets/js/custom-product.js',array('jquery'),'1.0.0',true);
+    
+}
+add_action('wp_enqueue_scripts','woo_custom_product_assets');
+
+
 /** 
  *  register custom prduct trype for woocommerce 
 */
