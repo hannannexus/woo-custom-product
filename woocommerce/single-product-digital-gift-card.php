@@ -45,9 +45,14 @@
                             <div class="receiver_info">
                                 <label for="Name">Receiver Name</label>
                                 <input type="text" name="receiver_name[]" value="" class="receiver_name">
+                                
+                                <label for="Receiver Telephone_number">Telephone Number</label>
+                                <input type="number" name="receiver_telephone_number[]" value="">
+                                
                                 <label for="Email">Receiver Email:</label>
                                 <input type="email" name="receiver_email[]" value="" class="receiver_email">
-
+                                
+                                <textarea name="receiver_address[]" id="receiver_address" cols="5" rows="5" placeholder="Receiver Address..."></textarea>
                                 
                              </div>
                         </div>
@@ -60,13 +65,15 @@
                             <div id="Sender_info">
                                 <label for="Sender Name">Sender Name</label>
                                 <input type="text" name="sender_name[]" value="" class="sender_name">
+                                <label for="Telephone_number">Telephone Number</label>
+                                <input type="number" name="sender_telephone_number[]" value="">
                                 <label for="Sender Email">Sender Email:</label>
                                 <input type="email" name="sender_email[]" value="" class="sender_email">
-
+                                <textarea name="sender_address[]" id="sender_address" cols="5" rows="5" placeholder="Sender Address..."></textarea>
                             </div>
 
                             <div class="messagae_part">
-                                <textarea name="sms[]" id="sender_sms" cols="5" rows="5"></textarea>
+                                <textarea name="sms[]" id="sender_sms" cols="5" rows="5" placeholder="Send SMS..."></textarea>
                             </div>
                             <div class="sending_option">
                                 <div class="radio_one">
